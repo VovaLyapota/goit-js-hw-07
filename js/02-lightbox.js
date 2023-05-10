@@ -15,8 +15,6 @@ const newItemsOfListEls = galleryItems
 
 listEls.insertAdjacentHTML("beforeend", newItemsOfListEls);
 
-listEls.addEventListener("click", onImgSourceClick);
-
 const lightbox = new SimpleLightbox(".gallery a", {
   captions: true,
   captionDelay: 250,
@@ -24,16 +22,3 @@ const lightbox = new SimpleLightbox(".gallery a", {
   captionType: "inner",
   captionsData: "alt",
 });
-
-function onImgSourceClick(event) {
-  event.preventDefault();
-  if (event.target.nodeName !== "IMG") {
-    return;
-  }
-
-  const selectedImage = event.target
-    .closest(".gallery__item")
-    .querySelector(".gallery__link").href;
-
-  const lightbox = new SimpleLightbox(selectedImage);
-}

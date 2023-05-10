@@ -48,9 +48,15 @@ function onImgSourceClick(event) {
 
   instance.show();
 
-  listEls.addEventListener("keydown", (event) => {
+  listEls.addEventListener("keydown", onEscapeKeyDown);
+
+  function onEscapeKeyDown(event) {
     if (event.code === "Escape" && instance.visible()) {
       instance.close();
     }
-  });
+  }
+
+  if (!instance.visible()) {
+    listEls.removeEventListener("keydown", onEscapeKeyDown);
+  }
 }
